@@ -1,0 +1,445 @@
+{
+  "address": "DAemEKoviGS9u1NYDUQL8LspGd11j9qdxkG6RWXhXiF7",
+  "metadata": {
+    "name": "x100contract",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "instructions": [
+    {
+      "name": "create_badge",
+      "discriminator": [
+        25,
+        191,
+        79,
+        235,
+        98,
+        119,
+        184,
+        59
+      ],
+      "accounts": [
+        {
+          "name": "badge",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "badge_authority",
+          "writable": true
+        },
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "name": "max_supply",
+          "type": "u64"
+        },
+        {
+          "name": "unlock_content",
+          "type": {
+            "option": "string"
+          }
+        }
+      ]
+    },
+    {
+      "name": "create_student_profile",
+      "discriminator": [
+        170,
+        78,
+        23,
+        229,
+        123,
+        10,
+        212,
+        46
+      ],
+      "accounts": [
+        {
+          "name": "student_profile",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "student",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "initialize",
+      "discriminator": [
+        175,
+        175,
+        109,
+        31,
+        13,
+        152,
+        155,
+        237
+      ],
+      "accounts": [
+        {
+          "name": "badge_authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "issue_badge",
+      "discriminator": [
+        154,
+        167,
+        63,
+        176,
+        24,
+        134,
+        221,
+        12
+      ],
+      "accounts": [
+        {
+          "name": "badge",
+          "writable": true
+        },
+        {
+          "name": "student_profile",
+          "writable": true
+        },
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "badge_authority"
+        }
+      ],
+      "args": [
+        {
+          "name": "badge_id",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "unlock_content",
+      "discriminator": [
+        34,
+        151,
+        220,
+        108,
+        234,
+        175,
+        192,
+        119
+      ],
+      "accounts": [
+        {
+          "name": "badge"
+        },
+        {
+          "name": "student_profile"
+        },
+        {
+          "name": "student",
+          "signer": true
+        }
+      ],
+      "args": [
+        {
+          "name": "badge_id",
+          "type": "u64"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Badge",
+      "discriminator": [
+        40,
+        127,
+        162,
+        181,
+        177,
+        154,
+        1,
+        48
+      ]
+    },
+    {
+      "name": "BadgeAuthority",
+      "discriminator": [
+        255,
+        207,
+        217,
+        50,
+        187,
+        168,
+        239,
+        174
+      ]
+    },
+    {
+      "name": "StudentProfile",
+      "discriminator": [
+        185,
+        172,
+        160,
+        26,
+        178,
+        113,
+        216,
+        235
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "BadgeCreated",
+      "discriminator": [
+        107,
+        1,
+        231,
+        247,
+        164,
+        84,
+        81,
+        23
+      ]
+    },
+    {
+      "name": "BadgeIssued",
+      "discriminator": [
+        189,
+        253,
+        197,
+        228,
+        145,
+        188,
+        104,
+        168
+      ]
+    },
+    {
+      "name": "ContentUnlocked",
+      "discriminator": [
+        139,
+        137,
+        233,
+        204,
+        227,
+        155,
+        63,
+        180
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "NameTooLong",
+      "msg": "Name is too long"
+    },
+    {
+      "code": 6001,
+      "name": "DescriptionTooLong",
+      "msg": "Description is too long"
+    },
+    {
+      "code": 6002,
+      "name": "Unauthorized",
+      "msg": "Unauthorized to perform this action"
+    },
+    {
+      "code": 6003,
+      "name": "BadgeSupplyExhausted",
+      "msg": "Badge supply exhausted"
+    },
+    {
+      "code": 6004,
+      "name": "BadgeAlreadyIssued",
+      "msg": "Badge already issued to this student"
+    },
+    {
+      "code": 6005,
+      "name": "BadgeNotOwned",
+      "msg": "Student does not own this badge"
+    },
+    {
+      "code": 6006,
+      "name": "NoUnlockableContent",
+      "msg": "No unlockable content for this badge"
+    }
+  ],
+  "types": [
+    {
+      "name": "Badge",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "id",
+            "type": "u64"
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "type": "string"
+          },
+          {
+            "name": "authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "max_supply",
+            "type": "u64"
+          },
+          {
+            "name": "current_supply",
+            "type": "u64"
+          },
+          {
+            "name": "unlock_content",
+            "type": {
+              "option": "string"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "BadgeAuthority",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "badge_count",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "BadgeCreated",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "id",
+            "type": "u64"
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "authority",
+            "type": "pubkey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "BadgeIssued",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "badge_id",
+            "type": "u64"
+          },
+          {
+            "name": "student",
+            "type": "pubkey"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ContentUnlocked",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "badge_id",
+            "type": "u64"
+          },
+          {
+            "name": "student",
+            "type": "pubkey"
+          },
+          {
+            "name": "content",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "StudentProfile",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "student",
+            "type": "pubkey"
+          },
+          {
+            "name": "badges",
+            "type": {
+              "vec": "u64"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
